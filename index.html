@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="yd.ico">
+    <title>图书管理</title>
+    
+    <link href="js/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
+
+    <!--全课云基础样式覆盖-->
+    <link href="css/iconfont2.0.css" rel="stylesheet">
+    <link href="css/qkybase2.0.css" rel="stylesheet">
+    <link href="css/quickcss2.0.css" rel="stylesheet">
+    <link href="css/library.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="qkybody">
+    <!--顶部-->
+    <div class="qky_header"></div>
+
+    <div class="container pa0 clear">
+    <div class="qkycadr mt15 fl lib_leftbox">
+      <a class="lib_leftnav active" href="index.html"><i class="qkyicon_14">&#xe635;</i> 图书维护</a>
+      <a class="lib_leftnav" href="index_bookCat.html"><i class="qkyicon_14">&#xe642;</i> 图书类别</a>
+      <a class="lib_leftnav" href="index_icCadr.html"><i class="qkyicon_14">&#xe782;</i> IC卡维护</a>
+    </div>
+    <div class="qkycadr mt15 fr lib_rightbox">
+      <div class="lib_searchbox">
+      <form class="form-horizontal">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                   <label  class="col-sm-4 control-label pr0 pl0">图书编号：</label>
+                   <div class="col-sm-8">
+                     <input type="text" class="form-control"  placeholder="图书编号">
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                 <label  class="col-sm-4 control-label pr0 pl0">书名：</label>
+                 <div class="col-sm-8">
+                   <input type="text" class="form-control"  placeholder="书名">
+                 </div>
+              </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+               <label  class="col-sm-4 control-label pr0 pl0">ISBN：</label>
+               <div class="col-sm-8 pr15">
+                 <input type="text" class="form-control"  placeholder="ISBN">
+               </div>
+            </div>
+        </div>
+            
+            
+            <div class="col-sm-4">
+                <div class="form-group">
+                   <label class="col-sm-4 control-label pr0 pl0">图书类型：</label>
+                   <div class="col-sm-8">
+                     <div class="dropdown qkydropdown havechoose">
+                       <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                        <span class="value">所有</span>
+                        <span class="caret"></span>
+                       </a>
+                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a>法律</a></li>
+                        <li role="presentation"><a>政治</a></li>
+                       </ul>
+                      </div>
+                   </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                   <label class="col-sm-4 control-label pr0 pl0">图书状态：</label>
+                   <div class="col-sm-8">
+                     <div class="dropdown qkydropdown havechoose">
+                       <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                        <span class="value">所有</span>
+                        <span class="caret"></span>
+                       </a>
+                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a>正常</a></li>
+                        <li role="presentation"><a>破损</a></li>
+                        <li role="presentation"><a>丢失</a></li>
+                       </ul>
+                      </div>
+                   </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4 clear"><a type="submit" class="btn btn-primary kuai  fr col-sm-8 mr15">搜索</a></div>
+        </div>
+      </form>
+      </div>
+      <div class=" clear pa15">
+          <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#addBook">图书购入登记</a>
+          <a class="btn btn-primary fl" data-toggle="modal" data-target="#allAddBook">图书批量导入</a>
+      </div>
+      <div class=" mb15 pl15 pr15">
+          <table class="table table-condensed atd table-bordered">
+              <thead><tr>
+                  <th>编号</th><th>书名</th><th>作者</th><th>ISBN</th><th>出版社</th><th>价格</th><th>类别</th><th>架位</th><th>购入日期</th><th>状态</th><th width="10%">操作</th>
+              </tr></thead>
+              <tbody>
+                  <tr>
+                      <td>112123231</td><td>中国司法评论</td><td>万湘</td><td>7801610407</td><td>中国人民出版社</td>
+                      <td>25</td><td>法律</td><td>一楼A115</td><td>2018-04-02</td><td>正常</td>
+                      <td>
+                      <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                      <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>121212121</td><td>律师文摘</td><td>孙国栋</td><td>7823234232</td><td>中国人民出版社</td>
+                      <td>35</td><td>政治</td><td>一楼A115</td><td>2018-03-23</td><td class="remind_tips">破损</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#Undelectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>121212121</td><td>律师文摘</td><td>孙国栋</td><td>7823234232</td><td>中国人民出版社</td>
+                      <td>35</td><td>政治</td><td>一楼A115</td><td>2018-03-23</td><td class="error_tips">丢失</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>112123231</td><td>中国司法评论</td><td>万湘</td><td>7801610407</td><td>中国人民出版社</td>
+                      <td>25</td><td>法律</td><td>一楼A115</td><td>2018-04-02</td><td>正常</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>112123231</td><td>中国司法评论</td><td>万湘</td><td>7801610407</td><td>中国人民出版社</td>
+                      <td>25</td><td>法律</td><td>一楼A115</td><td>2018-04-02</td><td>正常</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>112123231</td><td>中国司法评论</td><td>万湘</td><td>7801610407</td><td>中国人民出版社</td>
+                      <td>25</td><td>法律</td><td>一楼A115</td><td>2018-04-02</td><td>正常</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>112123231</td><td>中国司法评论</td><td>万湘</td><td>7801610407</td><td>中国人民出版社</td>
+                      <td>25</td><td>法律</td><td>一楼A115</td><td>2018-04-02</td><td>正常</td>
+                      <td>
+                            <a class=""  data-toggle="modal" data-target="#chackBook">查看</a>
+                            <a class="" data-toggle="modal" data-target="#editBook">修改</a>
+                            <a class="error_tips" data-toggle="modal" data-target="#delectbook">删除</a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        <div class="qkypage  page_center mb15"> 
+            <ul class="nav nav-pills"> 
+                <li class="disabled page_prv"><a href="#">上一页</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li class="page_next"><a href="#">下一页</a></li>
+                <li class="form-group mb0 page_input"><input type="text" class="form-control" placeholder="输入页面"></li>
+            </ul>
+        </div>
+        <!--无数据时-->
+        <div class=" mb15 pl15 pr15">
+            <table class="table table-condensed atd table-bordered">
+                <thead><tr>
+                    <th>编号</th><th>书名</th><th>作者</th><th>ISBN</th><th>出版社</th><th>价格</th><th>类别</th><th>架位</th><th>购入日期</th><th>状态</th><th width="10%">操作</th>
+                </tr></thead>
+                <tbody>
+                    <tr>
+                        <td colspan="11" class="t_c">暂无查询到相关数据</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="footer default">中国移动政企分公司 版权所有</div>
+
+<!--模态窗-->
+<div class="modal fade" id="addBook" >
+    <div class="modal-dialog " >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" >图书购入登记</h4>
+        </div>
+        <div class="modal-body modal_auto ">
+            <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                   <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书名称：</label>
+                                   <div class="col-sm-8">
+                                     <input type="text" class="form-control"  placeholder="图书名称">
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>ISBN：</label>
+                                       <div class="col-sm-8 pr15">
+                                         <input type="text" class="form-control"  placeholder="支持扫码枪扫入">
+                                       </div>
+                                    </div>
+                                </div>
+                            <div class="col-sm-6">
+                              <div class="form-group">
+                                 <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书编号：</label>
+                                 <div class="col-sm-8">
+                                   <input type="text" class="form-control"  placeholder="自动生成" readonly>
+                                 </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                                <div class="form-group">
+                                   <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书作者：</label>
+                                   <div class="col-sm-8 pr15">
+                                     <input type="text" class="form-control"  placeholder="图书作者">
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>出版社：</label>
+                                       <div class="col-sm-8 pr15">
+                                         <input type="text" class="form-control"  placeholder="出版社">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <label  class="col-sm-4 control-label pr0 pl0">出版日期：</label>
+                                           <div class="col-sm-8 pr15">
+                                             
+                                             <div class="qkycalendar_box default"><input type="text" class="form-control qkycalendar_btn" placeholder="出版日期年月日"></div>
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                               <label  class="col-sm-4 control-label pr0 pl0">图书价格：</label>
+                                               <div class="col-sm-8 pr15">
+                                                 <input type="text" class="form-control"  placeholder="图书价格">
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <div class="form-group">
+                                                   <label  class="col-sm-4 control-label pr0 pl0">图书架位：</label>
+                                                   <div class="col-sm-8 pr15">
+                                                     <input type="text" class="form-control"  placeholder="图书架位">
+                                                   </div>
+                                                </div>
+                                            </div>
+                            
+                            <div class="col-sm-6">
+                                <div class="form-group mb0">
+                                   <label class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书类别：</label>
+                                   <div class="col-sm-8">
+                                     <div class="dropdown qkydropdown havechoose">
+                                       <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                                        <span class="value">所有</span>
+                                        <span class="caret"></span>
+                                       </a>
+                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation"><a>法律</a></li>
+                                        <li role="presentation"><a>政治</a></li>
+                                       </ul>
+                                      </div>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group mb0">
+                                       <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>购入日期：</label>
+                                       <div class="col-sm-8 pr15">
+                                            <div class="qkycalendar_box default"><input type="text" class="form-control qkycalendar_btn" placeholder="购入日期年月日"></div>
+                                       </div>
+                                    </div>
+                                </div>
+
+                        </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="editBook" >
+        <div class="modal-dialog " >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >修改图书购入登记</h4>
+            </div>
+            <div class="modal-body modal_auto ">
+                <form class="form-horizontal">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书名称：</label>
+                                       <div class="col-sm-8">
+                                         <input type="text" class="form-control" value="中国司法评论">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>ISBN：</label>
+                                           <div class="col-sm-8 pr15">
+                                             <input type="text" class="form-control" value="7801610407">
+                                           </div>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                     <label  class="col-sm-4 control-label pr0 pl0">图书编号：</label>
+                                     <div class="col-sm-8">
+                                       <input type="text" class="form-control"  value="180509000001" readonly>
+                                     </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书作者：</label>
+                                       <div class="col-sm-8 pr15">
+                                         <input type="text" class="form-control"   value="万湘">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>出版社：</label>
+                                           <div class="col-sm-8 pr15">
+                                             <input type="text" class="form-control"  value="中国人民出版社">
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                               <label  class="col-sm-4 control-label pr0 pl0">出版日期：</label>
+                                               <div class="col-sm-8 pr15">
+                                                 
+                                                 <div class="qkycalendar_box defaults"><input type="text" class="form-control qkycalendar_btn"  value="2017-2-3"></div>
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <div class="form-group">
+                                                   <label  class="col-sm-4 control-label pr0 pl0">图书价格：</label>
+                                                   <div class="col-sm-8 pr15">
+                                                     <input type="text" class="form-control"  value="25">
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                       <label  class="col-sm-4 control-label pr0 pl0">图书架位：</label>
+                                                       <div class="col-sm-8 pr15">
+                                                         <input type="text" class="form-control"   value="一楼A115">
+                                                       </div>
+                                                    </div>
+                                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group mb0">
+                                       <label class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>图书类别：</label>
+                                       <div class="col-sm-8">
+                                         <div class="dropdown qkydropdown havechoose">
+                                           <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                                            <span class="value">法律</span>
+                                            <span class="caret"></span>
+                                           </a>
+                                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                            <li role="presentation"><a>法律</a></li>
+                                            <li role="presentation"><a>政治</a></li>
+                                           </ul>
+                                          </div>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group mb0">
+                                           <label  class="col-sm-4 control-label pr0 pl0"><b class="error_tips">*</b>购入日期：</label>
+                                           <div class="col-sm-8 pr15">
+                                                <div class="qkycalendar_box defaultss"><input type="text" class="form-control qkycalendar_btn" value="2018-4-2"></div>
+                                           </div>
+                                        </div>
+                                    </div>
+    
+                            </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">确定</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="modal fade" id="chackBook" >
+        <div class="modal-dialog " >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >图书信息查看</h4>
+            </div>
+            <div class="modal-body modal_auto ">
+                <form class="form-horizontal">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0">图书名称：</label>
+                                       <div class="col-sm-8">
+                                         <input type="text" class="form-control"  placeholder="图书名称" readonly value="中国司法评论">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <label  class="col-sm-4 control-label pr0 pl0">ISBN：</label>
+                                           <div class="col-sm-8 pr15">
+                                             <input type="text" class="form-control"  placeholder="支持扫码枪扫入" readonly value="7801610407">
+                                           </div>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                     <label  class="col-sm-4 control-label pr0 pl0">图书编号：</label>
+                                     <div class="col-sm-8">
+                                       <input type="text" class="form-control"  placeholder="自动生成" readonly value="180509000001">
+                                     </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label  class="col-sm-4 control-label pr0 pl0">图书作者：</label>
+                                       <div class="col-sm-8 pr15">
+                                         <input type="text" class="form-control"  placeholder="图书作者" readonly value="万湘">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <label  class="col-sm-4 control-label pr0 pl0">出版社：</label>
+                                           <div class="col-sm-8 pr15">
+                                             <input type="text" class="form-control"  placeholder="出版社" readonly value="中国人民出版社">
+                                           </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                               <label  class="col-sm-4 control-label pr0 pl0">出版日期：</label>
+                                               <div class="col-sm-8 pr15">
+                                                    <input type="text" class="form-control"  placeholder="出版社" readonly value="2017-02-03">
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                                <div class="form-group">
+                                                   <label  class="col-sm-4 control-label pr0 pl0">图书价格：</label>
+                                                   <div class="col-sm-8 pr15">
+                                                     <input type="text" class="form-control"  placeholder="图书价格" readonly value="25">
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                       <label  class="col-sm-4 control-label pr0 pl0">图书架位：</label>
+                                                       <div class="col-sm-8 pr15">
+                                                         <input type="text" class="form-control"  placeholder="图书架位" readonly value="一楼A115">
+                                                       </div>
+                                                    </div>
+                                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group mb0">
+                                       <label class="col-sm-4 control-label pr0 pl0">图书类别：</label>
+                                       <div class="col-sm-8">
+                                            <input type="text" class="form-control"  placeholder="出版社" readonly value="法律">
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div class="form-group mb0">
+                                           <label  class="col-sm-4 control-label pr0 pl0">购入日期：</label>
+                                           <div class="col-sm-8 pr15">
+                                                <input type="text" class="form-control"  placeholder="出版社" readonly value="2018-04-02">
+                                           </div>
+                                        </div>
+                                    </div>
+    
+                            </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">确定</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="modal fade" id="allAddBook" >
+        <div class="modal-dialog " >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >图书批量导入</h4>
+            </div>
+            <div class="modal-body modal_auto ">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label pr0 pl0">导入模板：</label>
+                        <div class="col-sm-10">
+                            <a class="btn btn-primary">下载模板</a><span class="lh30 ml5 remind_tips">请下载模板填写信息后上传导入</span>
+                        </div>
+                    </div>
+                                
+                    <div class="form-group mb0">
+                        <label  class="col-sm-2 control-label pr0 pl0">上传文件：</label>
+                        <div class="col-sm-10 pr15">
+                                <div class="input-group"> 
+                                <input type="text" class="form-control file">
+                                <span class="input-group-btn"><a class="btn btn-primary po_r btn_file" role="button">上传<input type="file" class="ycfile"></a></span>
+                                </div>
+                        </div>
+                    </div>           
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">确定</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+  </div>
+
+      <div class="modal fade" id="delectbook" >
+            <div class="modal-dialog modal-xs" >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" >删除提示</h4>
+                </div>
+                <div class="modal-body modal_auto t_c error_color">是否对该图书记录进行删除？</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">确定</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      <div class="modal fade" id="Undelectbook" >
+                <div class="modal-dialog modal-xs" >
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" >删除提示</h4>
+                    </div>
+                    <div class="modal-body modal_auto t_c error_color">该图书已借出，不能删除</div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">确定</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                  </div>
+                </div>
+       </div>
+
+    <!--模块化js-->
+    <script src="js/sea.js"></script>
+    <script src="js/seaconfig2.0.js"></script>
+    <script>
+     seajs.use(["jq","bs","qkycal","oh","dw","upfile"],function(j,b,cal,oh){
+        oh.header(0);
+        cal.qkycalendar({boxid:".qkycalendar_box.default"});
+        cal.qkycalendar({boxid:".qkycalendar_box.defaults",isinput:true,isdistshowdate:true});
+        cal.qkycalendar({boxid:".qkycalendar_box.defaultss",isinput:true,isdistshowdate:true});
+     });
+    </script>
+  </body>
+</html>

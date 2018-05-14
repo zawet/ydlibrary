@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="yd.ico">
+  <title>IC卡维护</title>
+
+  <link href="js/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
+
+  <!--全课云基础样式覆盖-->
+  <link href="css/iconfont2.0.css" rel="stylesheet">
+  <link href="css/qkybase2.0.css" rel="stylesheet">
+  <link href="css/quickcss2.0.css" rel="stylesheet">
+  <link href="css/library.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="qkybody">
+  <!--顶部-->
+  <div class="qky_header"></div>
+
+  <div class="container pa0 clear">
+    <div class="qkycadr mt15 fl lib_leftbox">
+        <a class="lib_leftnav " href="index_look.html"><i class="qkyicon_14">&#xe605;</i> 借阅查询</a>
+      <a class="lib_leftnav active" href="index_overdue.html"><i class="qkyicon_14">&#xe630;</i> 逾期查询</a>
+    </div>
+    <div class="qkycadr mt15 fr lib_rightbox">
+      <div class="lib_searchbox mb15">
+        <form class="form-horizontal">
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="col-sm-2 control-label pr0 pl0">书名：</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="书名">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="col-sm-3 control-label pr0 pl0">借阅人：</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="IC卡卡号">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2 clear">
+              <a type="submit" class="btn btn-primary">搜索</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+              <th>图书编号</th>
+              <th>书名</th>
+              <th>作者</th>
+              <th>ISBN</th>
+              <th>出版社</th>
+              <th>图书类别</th>
+              <th>借还状态</th>
+              <th>借阅人</th>
+              <th>借阅时间</th>
+              <th>要求归还时间</th>
+              <th>逾期天数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>112123231</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>借出</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td>23</td>
+            </tr>
+            <tr>
+                <td>234232232</td>
+                <td>律师文摘</td>
+                <td>孙国栋</td>
+                <td>7801610407</td>
+                <td>中国人民出版社</td>
+                <td>法律</td>
+                <td>借出</td>
+                <td>林小东</td>
+                <td>2018-2-1</td>
+                <td>2018-3-1</td>
+                <td>38</td>
+              </tr>
+            
+
+          </tbody>
+        </table>
+      </div>
+      <div class="qkypage  page_center mb15">
+        <ul class="nav nav-pills">
+          <li class="disabled page_prv">
+            <a href="#">上一页</a>
+          </li>
+          <li class="active">
+            <a href="#">1</a>
+          </li>
+          <li>
+            <a href="#">2</a>
+          </li>
+          <li>
+            <a href="#">...</a>
+          </li>
+          <li>
+            <a href="#">4</a>
+          </li>
+          <li>
+            <a href="#">5</a>
+          </li>
+          <li class="page_next">
+            <a href="#">下一页</a>
+          </li>
+          <li class="form-group mb0 page_input">
+            <input type="text" class="form-control" placeholder="输入页面">
+          </li>
+        </ul>
+      </div>
+      <!--无数据时-->
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+                <th>图书编号</th>
+                <th>书名</th>
+                <th>作者</th>
+                <th>ISBN</th>
+                <th>出版社</th>
+                <th>图书类别</th>
+                <th>借还状态</th>
+                <th>借阅人</th>
+                <th>借阅时间</th>
+                <th>要求归还时间</th>
+                <th>逾期天数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="11" class="t_c">暂无查询到相关数据</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer default">中国移动政企分公司 版权所有</div>
+
+ 
+
+  <!--模块化js-->
+  <script src="js/sea.js"></script>
+  <script src="js/seaconfig2.0.js"></script>
+  <script>
+    seajs.use(["jq", "bs", "oh"], function (j, b,oh) {
+      oh.header(1);
+      
+    });
+
+  </script>
+</body>
+
+</html>

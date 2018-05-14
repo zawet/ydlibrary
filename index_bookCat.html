@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="yd.ico">
+    <title>图书类别</title>
+    
+    <link href="js/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
+
+    <!--全课云基础样式覆盖-->
+    <link href="css/iconfont2.0.css" rel="stylesheet">
+    <link href="css/qkybase2.0.css" rel="stylesheet">
+    <link href="css/quickcss2.0.css" rel="stylesheet">
+    <link href="css/library.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="qkybody">
+    <!--顶部-->
+    <div class="qky_header"></div>
+
+    <div class="container pa0 clear">
+    <div class="qkycadr mt15 fl lib_leftbox">
+        <a class="lib_leftnav " href="index.html"><i class="qkyicon_14">&#xe635;</i> 图书维护</a>
+        <a class="lib_leftnav active" href="index_bookCat.html"><i class="qkyicon_14">&#xe642;</i> 图书类别</a>
+        <a class="lib_leftnav" href="index_icCadr.html"><i class="qkyicon_14">&#xe782;</i> IC卡维护</a>
+    </div>
+    <div class="qkycadr mt15 fr lib_rightbox">
+      <div class="lib_searchbox">
+      <form class="form-horizontal">
+        <div class="form-group">
+                   <label  class="col-sm-1 control-label pr0 pl0">类别名称：</label>
+                   <div class="col-sm-6 ">
+                     <input type="text" class="form-control"  placeholder="类别名称">
+                   </div>
+                   <a type="submit" class="btn btn-primary col-sm-1">搜索</a>
+                  </div>
+      </form>
+      </div>
+      <div class=" clear pa15">
+          <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#addcat">新增类别</a>
+      </div>
+      <div class=" mb15 pl15 pr15">
+          <table class="table table-condensed atd table-bordered">
+              <thead><tr><th>编号</th><th>类别名称</th><th >操作</th></tr></thead>
+              <tbody>
+                  <tr>
+                      <td>1</td><td>马克思主义</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>2</td><td>哲学</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#Undelectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>3</td><td>社会科学总论</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>4</td><td>政治</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#Undelectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>5</td><td>军事</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>6</td><td>经济</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>7</td><td>文化</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>8</td><td>语言</td>
+                      <td>
+                      <a class="" data-toggle="modal" data-target="#editcat">修改</a>
+                      <a class="error_tips" data-toggle="modal" data-target="#delectcat">删除</a>
+                      </td>
+                  </tr>
+                  
+                 
+              </tbody>
+          </table>
+        </div>
+        <div class="qkypage  page_center mb15"> 
+            <ul class="nav nav-pills"> 
+                <li class="disabled page_prv"><a href="#">上一页</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li class="page_next"><a href="#">下一页</a></li>
+                <li class="form-group mb0 page_input"><input type="text" class="form-control" placeholder="输入页面"></li>
+            </ul>
+        </div>
+        <!--无数据时-->
+        <div class=" mb15 pl15 pr15">
+            <table class="table table-condensed atd table-bordered">
+                <thead><tr><th>编号</th><th>类别名称</th><th >操作</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="t_c">暂无查询到相关数据</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="footer default">中国移动政企分公司 版权所有</div>
+
+<!--模态窗-->
+<div class="modal fade" id="addcat" >
+    <div class="modal-dialog modal-sm" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" >新增类别</h4>
+        </div>
+        <div class="modal-body modal_auto ">
+            <form class="form-horizontal">
+                 <div class="form-group mb0">
+                      <label  class="col-sm-3 control-label pr0 pl0">类别名称：</label>
+                          <div class="col-sm-8">
+                             <input type="text" class="form-control"  placeholder="类别名称">
+                          </div>
+                 </div>          
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="editcat" >
+        <div class="modal-dialog modal-sm" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" >修改类别</h4>
+            </div>
+            <div class="modal-body modal_auto ">
+                <form class="form-horizontal">
+                    <div class="form-group mb0">
+                        <label  class="col-sm-3 control-label pr0 pl0">类别名称：</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control"  value="马克思主义">
+                        </div>
+                     </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">确定</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+
+      <div class="modal fade" id="delectcat" >
+            <div class="modal-dialog modal-xs" >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" >删除提示</h4>
+                </div>
+                <div class="modal-body modal_auto t_c error_color">是否对此类别进行删除?</div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">确定</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      <div class="modal fade" id="Undelectcat" >
+                <div class="modal-dialog modal-xs" >
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" >删除提示</h4>
+                    </div>
+                    <div class="modal-body modal_auto t_c error_color">该类别下存在图书，不允许删除</div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">确定</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                  </div>
+                </div>
+       </div>
+
+    <!--模块化js-->
+    <script src="js/sea.js"></script>
+    <script src="js/seaconfig2.0.js"></script>
+    <script>
+     seajs.use(["jq","bs","oh"],function(j,b,oh){
+      oh.header(0);
+     });
+    </script>
+  </body>
+</html>

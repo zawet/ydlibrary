@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="yd.ico">
+  <title>IC卡维护</title>
+
+  <link href="js/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
+
+  <!--全课云基础样式覆盖-->
+  <link href="css/iconfont2.0.css" rel="stylesheet">
+  <link href="css/qkybase2.0.css" rel="stylesheet">
+  <link href="css/quickcss2.0.css" rel="stylesheet">
+  <link href="css/library.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="qkybody">
+  <!--顶部-->
+  <div class="qky_header"></div>
+
+  <div class="container pa0 clear">
+    <div class="qkycadr mt15 fl lib_leftbox">
+        <a class="lib_leftnav " href="index.html"><i class="qkyicon_14">&#xe635;</i> 图书维护</a>
+        <a class="lib_leftnav " href="index_bookCat.html"><i class="qkyicon_14">&#xe642;</i> 图书类别</a>
+        <a class="lib_leftnav active" href="index_icCadr.html"><i class="qkyicon_14">&#xe782;</i> IC卡维护</a>
+    </div>
+    <div class="qkycadr mt15 fr lib_rightbox">
+      <div class="lib_searchbox">
+        <form class="form-horizontal">
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="col-sm-2 control-label pr0 pl0">姓名：</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="姓名">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label class="col-sm-3 control-label pr0 pl0">IC卡卡号：</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="IC卡卡号">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2 clear">
+              <a type="submit" class="btn btn-primary">搜索</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" clear pa15">
+        <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#addIC">新增IC卡</a>
+      </div>
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>姓名</th>
+              <th>IC卡卡号</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>林小西</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>林小东</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#UndelectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>林小南</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>林小北</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>梁大东</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#UndelectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>梁大西</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>梁大南</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>梁大北</td>
+              <td>232313223</td>
+              <td>
+                <a class="" data-toggle="modal" data-target="#editIC">修改</a>
+                <a class="error_tips" data-toggle="modal" data-target="#delectIC">删除</a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="qkypage  page_center mb15">
+        <ul class="nav nav-pills">
+          <li class="disabled page_prv">
+            <a href="#">上一页</a>
+          </li>
+          <li class="active">
+            <a href="#">1</a>
+          </li>
+          <li>
+            <a href="#">2</a>
+          </li>
+          <li>
+            <a href="#">...</a>
+          </li>
+          <li>
+            <a href="#">4</a>
+          </li>
+          <li>
+            <a href="#">5</a>
+          </li>
+          <li class="page_next">
+            <a href="#">下一页</a>
+          </li>
+          <li class="form-group mb0 page_input">
+            <input type="text" class="form-control" placeholder="输入页面">
+          </li>
+        </ul>
+      </div>
+      <!--无数据时-->
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>姓名</th>
+              <th>IC卡卡号</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="11" class="t_c">暂无查询到相关数据</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer default">中国移动政企分公司 版权所有</div>
+
+  <!--模态窗-->
+  <div class="modal fade" id="addIC">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">新增IC卡</h4>
+        </div>
+        <div class="modal-body modal_auto ">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">选择角色：</label>
+              <div class="col-sm-8">
+                <div class="radio pt0">
+                  <label class="radio-qky pt0 pl0 select clear radio-inline" toshow="chooseTea">
+                    <a class="radio_a fl">
+                      <b></b>
+                    </a>
+                    <span class="fr ml5">教师</span>
+                  </label>
+                  <label class="radio-qky pt0 clear radio-inline" toshow="chooseStu">
+                    <a class="radio_a fl">
+                      <b></b>
+                    </a>
+                    <span class="fr ml5">学生</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">姓名：</label>
+              <div class="col-sm-6 pr15">
+                <input type="text" class="form-control onman" placeholder="姓名">
+              </div>
+              <div class="col-sm-2 pl0">
+                <a class="btn btn-primary tochoose">选择</a>
+              </div>
+            </div>
+
+            <div class="form-group mb0">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">IC卡卡号：</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="IC卡卡号">
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addICtips">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editIC">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">修改IC卡卡号</h4>
+        </div>
+        <div class="modal-body modal_auto ">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">选择角色：</label>
+              <div class="col-sm-8">
+                <div class="radio pt0">
+                  <label class="radio-qky pt0 pl0 select clear radio-inline" toshow="chooseTea">
+                    <a class="radio_a fl">
+                      <b></b>
+                    </a>
+                    <span class="fr ml5">教师</span>
+                  </label>
+                  <label class="radio-qky pt0 clear radio-inline" toshow="chooseStu">
+                    <a class="radio_a fl">
+                      <b></b>
+                    </a>
+                    <span class="fr ml5">学生</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">姓名：</label>
+              <div class="col-sm-6 pr15">
+                <input type="text" class="form-control onman" placeholder="姓名" value="林小西">
+              </div>
+              <div class="col-sm-2 pl0">
+                <a class="btn btn-primary tochoose">选择</a>
+              </div>
+            </div>
+
+            <div class="form-group mb0">
+              <label class="col-sm-3 control-label pr0 pl0 pt5">IC卡卡号：</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="IC卡卡号" value="231212433">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addICtips">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addICtips">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body modal_auto t_c">IC卡卡号已存在</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="delectIC">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">删除提示</h4>
+        </div>
+        <div class="modal-body modal_auto t_c error_color">是否对该其绑定进行删除？</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="UndelectIC">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">删除提示</h4>
+        </div>
+        <div class="modal-body modal_auto t_c error_color">该用户有书未归还，不允许删除</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="chooseTea">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">选择人员</h4>
+        </div>
+        <div class="modal-body modal_auto  clear lib_chooseman">
+          <div class="rensel onesel col-sm-5">
+            <div class="qky_tit"> 学校人员</div>
+            <div class="input-group mb10">
+              <span class="input-group-btn">
+                <a class="btn btn-default" type="button">
+                  <i class="qkyicon_14">&#xe671;</i>
+                </a>
+              </span>
+              <input type="text" class="form-control" placeholder="请输入人员搜索">
+            </div>
+            <ul>
+              <li>张老师</li>
+              <li>李老师</li>
+              <li>王老师</li>
+              <li>关老师</li>
+              <li>龚老师</li>
+              <li>张老师</li>
+              <li>李老师</li>
+              <li>王老师</li>
+              <li>关老师</li>
+              <li>龚老师</li>
+              <li>张老师</li>
+              <li>李老师</li>
+              <li>王老师</li>
+              <li>关老师</li>
+              <li>龚老师</li>
+            </ul>
+          </div>
+          <div class="fl col-sm-2">
+            <a class="btn btn-primary kuai mb10 addren">添加</a>
+            <a class="btn btn-default kuai removeren">移除</a>
+          </div>
+          <div class="col-sm-5 rensel twosel">
+            <div class="qky_tit"> 选中的人员</div>
+            <ul></ul>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary onchoose" data-dismiss="modal">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="chooseStu">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">选择人员</h4>
+        </div>
+        <div class="modal-body modal_auto">
+          <form class="form-horizontal">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label pr0 pl0">年级：</label>
+                  <div class="col-sm-9">
+                    <div class="dropdown qkydropdown havechoose">
+                      <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                        <span class="value">一年级</span>
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                          <a>一年级</a>
+                        </li>
+                        <li role="presentation">
+                          <a>二年级</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group ">
+                  <label class="col-sm-3 control-label pr0 pl0">班级：</label>
+                  <div class="col-sm-9">
+                    <div class="dropdown qkydropdown havechoose">
+                      <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                        <span class="value">一（1）班</span>
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                          <a>一（1）班</a>
+                        </li>
+                        <li role="presentation">
+                          <a>一（2）班</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="clear lib_chooseman">
+            <div class="rensel onesel col-sm-5">
+              <div class="qky_tit"> 学校人员</div>
+              <div class="input-group mb10">
+                <span class="input-group-btn">
+                  <a class="btn btn-default" type="button">
+                    <i class="qkyicon_14">&#xe671;</i>
+                  </a>
+                </span>
+                <input type="text" class="form-control" placeholder="请输入人员搜索">
+              </div>
+              <ul>
+                <li>张同学</li>
+                <li>李同学</li>
+                <li>王同学</li>
+                <li>关同学</li>
+                <li>龚同学</li>
+                <li>张同学</li>
+                <li>李同学</li>
+                <li>王同学</li>
+                <li>关同学</li>
+                <li>龚同学</li>
+                <li>张同学</li>
+                <li>李同学</li>
+                <li>王同学</li>
+                <li>关同学</li>
+                <li>龚同学</li>
+              </ul>
+            </div>
+            <div class="col-sm-2">
+              <a class="btn btn-primary kuai mb10 addren">添加</a>
+              <a class="btn btn-default kuai removeren">移除</a>
+            </div>
+            <div class="col-sm-5 rensel twosel">
+              <div class="qky_tit"> 选中的人员</div>
+              <ul></ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary onchoose" data-dismiss="modal">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--模块化js-->
+  <script src="js/sea.js"></script>
+  <script src="js/seaconfig2.0.js"></script>
+  <script>
+    seajs.use(["jq", "bs", "rach","oh", "dw"], function (j, b, rach,oh) {
+      oh.header(0);
+      rach.radio_run(function () {});
+
+      rensel();
+      var actOnman = "";
+      $(".tochoose").click(function () {
+        var showpop = $(this).parents("form").find(".radio-qky.select").attr("toshow");
+        actOnman = $(this).parents("form").find(".onman");
+        $('#' + showpop).modal('show');
+      });
+
+      $(".onchoose").click(function () {
+        var ren = '';
+        $(this).parents(".modal").find(".twosel ul li").each(function (i) {
+          ren += $(this).html() + ",";
+        });
+        actOnman.val(ren);
+      });
+    });
+
+    function rensel() {
+      $(".rensel ul").on("click", "li", function () {
+        $(this).addClass("cur").siblings().removeClass("cur");
+      });
+
+      $(".addren").click(function () {
+        $(this).parents(".lib_chooseman").find(".twosel ul").append($(this).parents(".lib_chooseman").find(
+          ".onesel ul li.cur").clone());
+        $(this).parents(".lib_chooseman").find(".onesel ul li.cur").remove();
+
+      });
+      $(".removeren").click(function () {
+        $(this).parents(".lib_chooseman").find(".onesel ul").append($(this).parents(".lib_chooseman").find(
+          ".twosel ul li.cur").clone())
+        $(this).parents(".lib_chooseman").find(".twosel ul li.cur").remove();
+      });
+    }
+  </script>
+</body>
+
+</html>

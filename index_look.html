@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="yd.ico">
+  <title>图书借阅</title>
+
+  <link href="js/bootstrap/3.3.0/css/bootstrap.css" rel="stylesheet">
+
+  <!--全课云基础样式覆盖-->
+  <link href="css/iconfont2.0.css" rel="stylesheet">
+  <link href="css/qkybase2.0.css" rel="stylesheet">
+  <link href="css/quickcss2.0.css" rel="stylesheet">
+  <link href="css/library.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="qkybody">
+  <!--顶部-->
+  <div class="qky_header"></div>
+
+  <div class="container pa0 clear">
+    <div class="qkycadr mt15 fl lib_leftbox">
+      <a class="lib_leftnav active" href="index_look.html"><i class="qkyicon_14">&#xe605;</i> 借阅查询</a>
+      <a class="lib_leftnav" href="index_overdue.html"><i class="qkyicon_14">&#xe630;</i> 逾期查询</a>
+    </div>
+    <div class="qkycadr mt15 fr lib_rightbox">
+      <div class="lib_searchbox">
+        <form class="form-horizontal">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-4 control-label pr0 pl0">图书编号：</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="图书编号">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-4 control-label pr0 pl0">书名：</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="书名">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-4 control-label pr0 pl0">ISBN：</label>
+                <div class="col-sm-8 pr15">
+                  <input type="text" class="form-control" placeholder="ISBN">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-4 control-label pr0 pl0">图书类型：</label>
+                <div class="col-sm-8">
+                  <div class="dropdown qkydropdown havechoose">
+                    <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                      <span class="value">所有</span>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <li role="presentation">
+                        <a>法律</a>
+                      </li>
+                      <li role="presentation">
+                        <a>政治</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-4 control-label pr0 pl0">借还状态：</label>
+                <div class="col-sm-8">
+                  <div class="dropdown qkydropdown havechoose">
+                    <a class="btn btn-default dropdown-toggle auto" data-toggle="dropdown">
+                      <span class="value">所有</span>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <li role="presentation">
+                        <a>借出</a>
+                      </li>
+                      <li role="presentation">
+                        <a>正常归还</a>
+                      </li>
+                      <li role="presentation">
+                        <a>丢失</a>
+                      </li>
+                      <li role="presentation">
+                        <a>破损归还</a>
+                      </li>
+                      <li role="presentation">
+                        <a>逾期归还</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4 clear">
+              <a type="submit" class="btn btn-primary kuai  fr col-sm-8 mr15">搜索</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" clear pa15">
+        <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#lookLogin">借阅登记</a>
+        <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#backLogin">归还登记</a>
+        <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#continueLogin">续借登记</a>
+        <a class="btn btn-primary fl mr5" data-toggle="modal" data-target="#loseLogin">丢失登记</a>
+        <a class="btn btn-primary fl " data-toggle="modal" data-target="#wornLogin">破损登记</a>
+
+      </div>
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>书名</th>
+              <th>作者</th>
+              <th>ISBN</th>
+              <th>出版社</th>
+              <th>类别</th>
+              <th>借还状态</th>
+              <th>借阅人</th>
+              <th>借阅时间</th>
+              <th>要求归还时间</th>
+              <th>实际归还时间</th>
+              <th>罚金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>112123231</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>借出</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>正常归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-2-27</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>破损归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td>2018-2-12</td>
+              <td>45</td>
+            </tr>
+            <tr>
+              <td>112123231</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>借出</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>正常归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-2-27</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>破损归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td>2018-2-12</td>
+              <td>45</td>
+            </tr>
+            <tr>
+              <td>112123231</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>借出</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>正常归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-2-27</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>234232232</td>
+              <td>中国司法评论</td>
+              <td>万湘</td>
+              <td>7801610407</td>
+              <td>中国人民出版社</td>
+              <td>法律</td>
+              <td>破损归还</td>
+              <td>林小东</td>
+              <td>2018-2-1</td>
+              <td>2018-3-1</td>
+              <td>2018-2-12</td>
+              <td>45</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="qkypage  page_center mb15">
+        <ul class="nav nav-pills">
+          <li class="disabled page_prv">
+            <a href="#">上一页</a>
+          </li>
+          <li class="active">
+            <a href="#">1</a>
+          </li>
+          <li>
+            <a href="#">2</a>
+          </li>
+          <li>
+            <a href="#">...</a>
+          </li>
+          <li>
+            <a href="#">4</a>
+          </li>
+          <li>
+            <a href="#">5</a>
+          </li>
+          <li class="page_next">
+            <a href="#">下一页</a>
+          </li>
+          <li class="form-group mb0 page_input">
+            <input type="text" class="form-control" placeholder="输入页面">
+          </li>
+        </ul>
+      </div>
+      <!--无数据时-->
+      <div class=" mb15 pl15 pr15">
+        <table class="table table-condensed atd table-bordered">
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>书名</th>
+              <th>作者</th>
+              <th>ISBN</th>
+              <th>出版社</th>
+              <th>类别</th>
+              <th>借还状态</th>
+              <th>借阅人</th>
+              <th>借阅时间</th>
+              <th>要求归还时间</th>
+              <th>实际归还时间</th>
+              <th>罚金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="12" class="t_c">暂无查询到相关数据</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="footer default">中国移动政企分公司 版权所有</div>
+
+  <!--模态窗-->
+
+  <!--借阅-->
+  <div class="modal fade" id="lookLogin">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">借阅登记</h4>
+        </div>
+        <div class="modal-body modal_auto pb0">
+          <div class="row">
+            <div class="col-sm-6">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label pr0 pl0 pt5">IC卡号：</label>
+                  <div class="col-sm-8">
+                    <div class="input-group mb10">
+                      <input type="text" class="form-control" placeholder="支持IC卡读卡器录入">
+                      <span class="input-group-btn">
+                        <a class="btn btn-default" type="button">
+                          <i class="qkyicon_14">&#xe671;</i>
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb0">
+                  <label class="col-sm-3 control-label pr0 pl0 pt5">借阅人：</label>
+                  <div class="col-sm-8">
+                    <table class="table table-condensed atd table-bordered">
+                      <thead>
+                        <tr>
+                          <th>姓名</th>
+                          <th>要求归还时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td colspan="2" class="t_c">请录入IC卡卡号</td>
+                        </tr>
+                        <tr>
+                          <td>林大大</td>
+                          <td>2018-04-01</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-6 rline">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label pr0 pl0 pt5">图书编号：</label>
+                  <div class="col-sm-8">
+                    <div class="input-group mb10">
+                      <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                      <span class="input-group-btn">
+                        <a class="btn btn-default" type="button">
+                          <i class="qkyicon_14">&#xe671;</i>
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb0">
+                  <label class="col-sm-3 control-label pr0 pl0 pt5">借阅图书：</label>
+                  <div class="col-sm-8">
+                    <table class="table table-condensed atd table-bordered">
+                      <thead>
+                        <tr>
+                          <th>书名</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td colspan="2" class="t_c">请录入图书编号</td>
+                        </tr>
+                        <tr>
+                          <td>法律传记</td>
+                          <td>
+                            <a href="#">取消</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>成功经济</td>
+                          <td>
+                            <a href="#">取消</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#looktips">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="looktips">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body modal_auto t_c">借阅成功</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--归还-->
+  <div class="modal fade" id="backLogin">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">归还登记</h4>
+        </div>
+        <div class="modal-body modal_auto pb0">
+
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label pr0  pt5">图书编号：</label>
+              <div class="col-sm-10">
+                <div class="input-group mb10">
+                  <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                  <span class="input-group-btn">
+                    <a class="btn btn-default" type="button">
+                      <i class="qkyicon_14">&#xe671;</i>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mb0">
+              <label class="col-sm-2 control-label pr0  pt5">借阅人：</label>
+              <div class="col-sm-10">
+                <table class="table table-condensed atd table-bordered">
+                  <thead>
+                    <tr>
+                      <th>书名</th>
+                      <th>借阅人</th>
+                      <th>是否逾期</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="t_c">请录入图书编号</td>
+                    </tr>
+                    <tr>
+                      <td>中国司法评论</td>
+                      <td>林小东</td>
+                      <td>否</td>
+                      <td>
+                        <a data-toggle="modal" data-target="#backtips">归还</a>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>中国司法评论</td>
+                        <td>林小东</td>
+                        <td>是</td>
+                        <td>
+                          <a data-toggle="modal" data-target="#penalty">归还</a>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="penalty">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-body modal_auto pb0">
+          <form class="form-horizontal">
+            <div class="form-group mb0">
+              <label class="col-sm-4 control-label pr0 pl0 fz_nwe">请输入罚金</label>
+              <div class="col-sm-6 pr0">
+                <input type="text" class="form-control" placeholder="输入罚金数">
+              </div>
+              <span class="col-sm-1 lh30">元</span>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#backtips" >确定收取</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="backtips">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body modal_auto t_c">归还成功</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#penalty,#backLogin').modal('hide')">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--续借-->
+  <div class="modal fade" id="continueLogin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">续借登记</h4>
+          </div>
+          <div class="modal-body modal_auto pb0">
+  
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label pr0  pt5">图书编号：</label>
+                <div class="col-sm-10">
+                  <div class="input-group mb10">
+                    <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                    <span class="input-group-btn">
+                      <a class="btn btn-default" type="button">
+                        <i class="qkyicon_14">&#xe671;</i>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group mb0">
+                <label class="col-sm-2 control-label pr0  pt5">借阅信息：</label>
+                <div class="col-sm-10">
+                  <table class="table table-condensed atd table-bordered">
+                    <thead>
+                      <tr>
+                        <th>书名</th>
+                        <th>借阅人</th>
+                        <th>是否逾期</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="4" class="t_c">请录入图书编号</td>
+                      </tr>
+                      <tr>
+                        <td>中国司法评论</td>
+                        <td>林小东</td>
+                        <td>否</td>
+                        <td>
+                          <a data-toggle="modal" data-target="#continuetips">续借</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-10 col-sm-offset-2 mt10">
+                  <span class="kuai remind_tips lh30"><b>*</b>逾期的图书不能进行续借操作</span>
+                  <span class="kuai remind_tips "><b>*</b>每本图书只能续借一次</span>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="continuetips">
+      <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">提示</h4>
+          </div>
+          <div class="modal-body modal_auto t_c">
+           <span class="kuai">续借成功</span> 
+            <span class="kuai mian_color">下次归还时间为2018/03/09</span> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!--丢失登记-->
+  <div class="modal fade" id="loseLogin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">归还登记</h4>
+          </div>
+          <div class="modal-body modal_auto pb0">
+  
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label pr0  pt5">IC卡号：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="3453432323">
+                    </div>
+                  </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label pr0  pt5">图书编号：</label>
+                <div class="col-sm-10">
+                  <div class="input-group mb10">
+                    <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                    <span class="input-group-btn">
+                      <a class="btn btn-default" type="button">
+                        <i class="qkyicon_14">&#xe671;</i>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group mb0">
+                <label class="col-sm-2 control-label pr0  pt5">借阅人：</label>
+                <div class="col-sm-10">
+                  <table class="table table-condensed atd table-bordered">
+                    <thead>
+                      <tr>
+                        <th>书名</th>
+                        <th>借阅人</th>
+                        <th>是否逾期</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="4" class="t_c">请录入图书编号</td>
+                      </tr>
+                      
+                      <tr>
+                          <td>中国司法评论</td>
+                          <td>林小东</td>
+                          <td>否</td>
+                          <td>
+                            <a data-toggle="modal" data-target="#losePenalty">丢失</a>
+                          </td>
+                        </tr>
+                    
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="losePenalty">
+        <div class="modal-dialog modal-xs">
+          <div class="modal-content">
+            <div class="modal-body modal_auto pb0">
+              <form class="form-horizontal">
+                <div class="form-group mb0">
+                  <label class="col-sm-4 control-label pr0 pl0 fz_nwe">请输入罚金</label>
+                  <div class="col-sm-6 pr0">
+                    <input type="text" class="form-control" placeholder="输入罚金数">
+                  </div>
+                  <span class="col-sm-1 lh30">元</span>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#losetips">确定收取</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="modal fade" id="losetips">
+      <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">提示</h4>
+          </div>
+          <div class="modal-body modal_auto t_c">丢失登记成功</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#losePenalty,#loseLogin').modal('hide')">确定</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!--破损登记-->
+  <div class="modal fade" id="wornLogin">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">破损登记</h4>
+          </div>
+          <div class="modal-body modal_auto pb0">
+  
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label pr0  pt5">图书编号：</label>
+                <div class="col-sm-10">
+                  <div class="input-group mb10">
+                    <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                    <span class="input-group-btn">
+                      <a class="btn btn-default" type="button">
+                        <i class="qkyicon_14">&#xe671;</i>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group mb0">
+                <label class="col-sm-2 control-label pr0  pt5">借阅人：</label>
+                <div class="col-sm-10">
+                  <table class="table table-condensed atd table-bordered">
+                    <thead>
+                      <tr>
+                        <th>书名</th>
+                        <th>借阅人</th>
+                        <th>是否逾期</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colspan="4" class="t_c">请录入IC卡号/图书编号</td>
+                      </tr>
+                      
+                      <tr>
+                          <td>中国司法评论</td>
+                          <td>林小东</td>
+                          <td>否</td>
+                          <td>
+                            <a data-toggle="modal" data-target="#wornPenalty">破损归还</a>
+                          </td>
+                        </tr>
+                    
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="wornPenalty">
+        <div class="modal-dialog modal-xs">
+          <div class="modal-content">
+            <div class="modal-body modal_auto pb0">
+              <form class="form-horizontal">
+                <div class="form-group mb0">
+                  <label class="col-sm-4 control-label pr0 pl0 fz_nwe">请输入罚金</label>
+                  <div class="col-sm-6 pr0">
+                    <input type="text" class="form-control" placeholder="输入罚金数">
+                  </div>
+                  <span class="col-sm-1 lh30">元</span>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#worntips">确定收取</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="modal fade" id="worntips">
+      <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">提示</h4>
+          </div>
+          <div class="modal-body modal_auto t_c">破损登记成功</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#wornPenalty,#wornLogin').modal('hide')">确定</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!--模块化js-->
+  <script src="js/sea.js"></script>
+  <script src="js/seaconfig2.0.js"></script>
+  <script>
+    seajs.use(["jq", "bs", "oh", "dw"], function (j, b, oh) {
+      oh.header(1);
+    });
+  </script>
+</body>
+
+</html>
