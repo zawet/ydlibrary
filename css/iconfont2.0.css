@@ -14,7 +14,7 @@
 }
 
 @font-face {
-  font-family: 'qkyicon_14s';  /* project id 202497 */
+  font-family: 'qkyicon_14';  /* project id 202497 */
   src: url('../iconfont/14/iconfont.eot'); /* IE9*/
   src: url('../iconfont/14/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
   url('../iconfont/14/iconfont.woff') format('woff'), /* chrome, firefox */
@@ -23,7 +23,7 @@
 
 }
 @font-face {
-  font-family: 'qkyicon_14';  /* project id 202497 */
+  font-family: 'qkyicon_14s';  /* project id 202497 */
   src: url('//at.alicdn.com/t/font_202497_nf2jav1nei13v7vi.eot');
   src: url('//at.alicdn.com/t/font_202497_nf2jav1nei13v7vi.eot?#iefix') format('embedded-opentype'),
   url('//at.alicdn.com/t/font_202497_nf2jav1nei13v7vi.woff') format('woff'),
