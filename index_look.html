@@ -156,7 +156,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>借出</td>
+              <td class="isout">借出</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -170,7 +170,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>正常归还</td>
+              <td class="issuc">正常归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-2-27</td>
@@ -184,7 +184,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>破损归还</td>
+              <td class="isback">破损归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -198,7 +198,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>借出</td>
+              <td class="isout">借出</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -212,7 +212,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>正常归还</td>
+              <td class="issuc">正常归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-2-27</td>
@@ -226,7 +226,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>破损归还</td>
+              <td class="isback">破损归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -240,7 +240,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>借出</td>
+              <td class="isout">借出</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -254,7 +254,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>正常归还</td>
+              <td class="issuc">正常归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-2-27</td>
@@ -268,7 +268,7 @@
               <td>7801610407</td>
               <td>中国人民出版社</td>
               <td>法律</td>
-              <td>破损归还</td>
+              <td class="isback">破损归还</td>
               <td>林小东</td>
               <td>2018-2-1</td>
               <td>2018-3-1</td>
@@ -628,6 +628,14 @@
                           <a data-toggle="modal" data-target="#continuetips">续借</a>
                         </td>
                       </tr>
+                      <tr>
+                        <td>中国司法评论</td>
+                        <td>林小东</td>
+                        <td>是</td>
+                        <td>
+                          <a class="co_83">续借</a>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -673,7 +681,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title">归还登记</h4>
+            <h4 class="modal-title">丢失登记</h4>
           </div>
           <div class="modal-body modal_auto pb0">
   
@@ -681,7 +689,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label pr0  pt5">IC卡号：</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" value="3453432323">
+                      <div class="input-group mb10">
+                        <input type="text" class="form-control" placeholder="支持扫码枪扫码录入">
+                        <span class="input-group-btn">
+                          <a class="btn btn-default" type="button">
+                            <i class="qkyicon_14">&#xe671;</i>
+                          </a>
+                        </span>
+                      </div>
                     </div>
                   </div>
 

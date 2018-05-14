@@ -2,6 +2,11 @@ li,ul{list-style:none; margin:0; padding:0;}
 a{ color: #04acf7;}
 .input-group-btn .btn{ height: 30px;}
 .rline{ border-left:1px solid #ddd; }
+.isout{color: #f7b604 !important;} 
+.issuc{color: #0eb947!important;} 
+.isback{color: #d8142e!important;} 
+
+
 /*顶部模块框架样式*/
 .qky_header{  position:fixed;width:100%; z-index:100; overflow:hidden; margin:0; left:0;top:0;}
 .header1{ background:#04acf7;}
